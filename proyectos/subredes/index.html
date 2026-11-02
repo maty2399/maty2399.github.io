@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="subnetTitle">Calculadora de subredes IPv4</title>
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem("portfolio-theme");
+      document.documentElement.dataset.bsTheme = savedTheme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      const savedLanguage = localStorage.getItem("portfolio-language");
+      document.documentElement.lang = savedLanguage || (navigator.language.toLowerCase().startsWith("es") ? "es" : "en");
+    })();
+  </script>
+  <link rel="stylesheet" href="../../css/project.css">
+</head>
+<body>
+  <header class="project-header">
+    <a class="project-back" href="../../index.html#proyectos" data-i18n="backPortfolio">← Volver al portafolio</a>
+    <div class="project-tools">
+      <div class="project-language" role="group" aria-label="Idioma">
+        <button class="active" type="button" data-language="es" aria-pressed="true">ES</button>
+        <span aria-hidden="true">|</span>
+        <button type="button" data-language="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" data-i18n-aria-label="themeToggle">
+        <span id="theme-icon" aria-hidden="true">☀️</span>
+      </button>
+    </div>
+  </header>
+  <main class="project-shell">
+    <p class="project-eyebrow" data-i18n="subnetEyebrow">Herramienta de redes</p>
+    <h1 data-i18n="subnetTitle">Calculadora de subredes IPv4</h1>
+    <p class="project-description" data-i18n="subnetDescription">Ingresá una dirección IPv4 en formato CIDR para obtener los datos principales de su subred. Todo el cálculo se realiza localmente.</p>
+    <section class="project-panel" aria-labelledby="subnet-heading">
+      <h2 id="subnet-heading" data-i18n="subnetLabel">Dirección IPv4 y prefijo CIDR</h2>
+      <form class="project-form" id="subnet-form" novalidate>
+        <label for="cidr-input" data-i18n="subnetLabel">Dirección IPv4 y prefijo CIDR</label>
+        <input id="cidr-input" name="cidr" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="192.168.1.10/24" aria-describedby="subnet-hint subnet-message" required>
+        <p class="project-hint" id="subnet-hint" data-i18n="subnetHint">Ejemplo: 192.168.1.10/24 · Prefijos válidos: /0 a /32.</p>
+        <button class="project-button" type="submit" data-i18n="subnetCalculate">Calcular subred</button>
+      </form>
+      <p class="project-message" id="subnet-message" role="status" aria-live="polite"></p>
+      <div class="results" id="subnet-results" aria-live="polite" hidden>
+        <h2 data-i18n="subnetResults">Resultado</h2>
+        <dl class="result-grid">
+          <div><dt data-i18n="subnetNetwork">Dirección de red</dt><dd id="network-value"></dd></div>
+          <div><dt data-i18n="subnetBroadcast">Dirección de broadcast</dt><dd id="broadcast-value"></dd></div>
+          <div><dt data-i18n="subnetMask">Máscara de subred</dt><dd id="mask-value"></dd></div>
+          <div><dt data-i18n="subnetFirstHost">Primer host</dt><dd id="first-host-value"></dd></div>
+          <div><dt data-i18n="subnetLastHost">Último host</dt><dd id="last-host-value"></dd></div>
+          <div><dt data-i18n="subnetUsableHosts">Direcciones utilizables</dt><dd id="host-count-value"></dd></div>
+        </dl>
+        <p class="project-hint" data-i18n="subnetHostNote">Para /31 y /32 se muestran las direcciones disponibles según esos prefijos.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="project-footer" data-i18n="footerNote">Proyecto de práctica personal. Funciona directamente en el navegador; no envía datos.</footer>
+  <script src="../../js/project-ui.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

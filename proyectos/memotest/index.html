@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="memoryTitle">Memotest</title>
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem("portfolio-theme");
+      document.documentElement.dataset.bsTheme = savedTheme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      const savedLanguage = localStorage.getItem("portfolio-language");
+      document.documentElement.lang = savedLanguage || (navigator.language.toLowerCase().startsWith("es") ? "es" : "en");
+    })();
+  </script>
+  <link rel="stylesheet" href="../../css/project.css">
+</head>
+<body>
+  <header class="project-header">
+    <a class="project-back" href="../../index.html#proyectos" data-i18n="backPortfolio">← Volver al portafolio</a>
+    <div class="project-tools">
+      <div class="project-language" role="group" aria-label="Idioma">
+        <button class="active" type="button" data-language="es" aria-pressed="true">ES</button>
+        <span aria-hidden="true">|</span>
+        <button type="button" data-language="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" data-i18n-aria-label="themeToggle">
+        <span id="theme-icon" aria-hidden="true">☀️</span>
+      </button>
+    </div>
+  </header>
+  <main class="project-shell">
+    <p class="project-eyebrow" data-i18n="memoryEyebrow">Minijuego</p>
+    <h1 data-i18n="memoryTitle">Memotest</h1>
+    <p class="project-description" data-i18n="memoryDescription">Encontrá todos los pares. Cada intento cuenta cuando das vuelta dos tarjetas.</p>
+    <section class="project-panel" aria-label="Tablero de memoria" data-i18n-aria-label="memoryBoardLabel">
+      <div class="game-summary">
+        <p><span data-i18n="memoryMoves">Movimientos</span>: <strong id="move-count">0</strong></p>
+        <button class="secondary-button" id="new-game" type="button" data-i18n="memoryNewGame">Nueva partida</button>
+      </div>
+      <div class="memory-board" id="memory-board"></div>
+      <p class="project-message" id="memory-message" role="status" aria-live="polite" data-i18n="memoryReady">¡A jugar! Elegí una tarjeta.</p>
+    </section>
+  </main>
+  <footer class="project-footer" data-i18n="footerNote">Proyecto de práctica personal. Funciona directamente en el navegador; no envía datos.</footer>
+  <script src="../../js/project-ui.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
